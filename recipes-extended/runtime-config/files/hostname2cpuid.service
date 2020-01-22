@@ -1,0 +1,10 @@
+[Unit]
+Description=Update Hostname to CPUID
+After=syslog.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/hostname2cpuid.sh
+
+[Install]
+WantedBy=multi-user.target

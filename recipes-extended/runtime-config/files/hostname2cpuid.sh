@@ -1,14 +1,16 @@
 #!/usr/bin/env bash
 
-CPUID=''
-CPUID=$(echo $CPUID | cat /proc/cpuinfo | grep Serial | cut -d ' ' -f 2 | tr '[:lower:]' '[:upper:]')
+DEVICE_ID=""
 
-if [ -z ${CPUID} ]; then
-  echo "ERROR: Impossible obtain CPUID"
-  exit 1
+$1 | while read -r line; do
+  if [[ ${line} == *"Device ID: "* ]]; then
+    DEVICE_ID=${line:11} 
+  fi 
+done
+
+if [[ -z ${DEVICE_ID} ]]; then
+  echo ${DEVICE_ID} > /etc/hostname 
+  cat /etc/hostname
 fi
-
-echo ${CPUID} > /etc/hostname 
-cat /etc/hostname
 
 exit 0

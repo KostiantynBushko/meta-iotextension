@@ -1,10 +1,12 @@
 [Unit]
 Description=Update Hostname to CPUID
-After=syslog.target
+After=syslog.target 
 
 [Service]
-Type=simple
-ExecStart=/usr/bin/hostname2cpuid.sh
+Type=oneshot
+ExecStart=/usr/bin/zabbix-configure-host.sh
+ExecStop=/usr/bin/zabbix-configure-host.sh
+
 
 [Install]
 WantedBy=multi-user.target

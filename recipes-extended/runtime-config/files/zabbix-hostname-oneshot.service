@@ -1,0 +1,10 @@
+[Unit]
+Description=Update Hostname to CPUID
+After=syslog.target network.target aktualizr.service
+
+[Service]
+Type=simple
+ExecStar zabbix-hostname.sh
+
+[Install]
+WantedBy=multi-user.target

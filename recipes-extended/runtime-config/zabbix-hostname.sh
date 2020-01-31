@@ -11,17 +11,17 @@ $1 | while read -r line; do
       sed -i "s:^Hostname=Zabbix server:Hostname=${line:11}:g" /etc/zabbix_agentd.conf 
       systemctl restart zabbix-agent.service
       echo " ** SET HOSTNAME: ${line:11}" 
-      let S=0
-      #echo $S
-      #break
+      S=0
+      echo $S
+      break
     else
       echo " ** Host Nmae was already SET"
-      let S=0
-      #echo $S
-      #break
+      S=0
+      echo $S
+      break
     fi 
   fi
-done
+done < <$(find . -type f)
 
 echo "STATUS ${S}"
 if [[ "${S}" -ne 0 ]]; then

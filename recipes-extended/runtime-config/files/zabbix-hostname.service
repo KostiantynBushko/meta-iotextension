@@ -1,0 +1,13 @@
+[Unit]
+Description=Update Zavbbix Hostnam
+After=syslog.target network.target aktualizr.service
+
+[Service]
+Type=oneshot
+User=root
+ExecStart=/usr/bin/zabbix-hostname.sh /usr/bin/aktualizr-info
+RemainAfterExit=false
+StandardOutput=journal
+
+[Install]
+WantedBy=multi-user.target
